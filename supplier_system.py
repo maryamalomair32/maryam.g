@@ -1,4 +1,5 @@
 import sqlite3
+import csv  # مكتبة مدمجة للتعامل مع ملفات الأكسل
 
 conn = sqlite3.connect("suppliers.db")
 cursor = conn.cursor()
@@ -18,10 +19,7 @@ CREATE TABLE IF NOT EXISTS suppliers (
 
 conn.commit()
 
-# ==================== إضافة بيانات الجدول من الصورة ====================
-# قمنا بدمج (المدينة، الطريقة، الحد الأدنى، الملاحظات) في عمود "ميزة إضافية" للحفاظ على كودك كما هو.
-
-# نتحقق أولاً إذا كان الجدول فارغاً حتى لا تتكرر البيانات في كل مرة تشغلين فيها الكود
+# تحقق من وجود البيانات حتى لا تتكرر
 cursor.execute("SELECT COUNT(*) FROM suppliers")
 if cursor.fetchone()[0] == 0:
     suppliers_data = [
@@ -66,12 +64,7 @@ if cursor.fetchone()[0] == 0:
     """, suppliers_data)
     conn.commit()
 
-# ======================================================================
-
-cursor.execute("""
-SELECT * FROM suppliers
-""")
-
+cursor.execute("SELECT * FROM suppliers")
 suppliers = cursor.fetchall()
 
 print("\n===== قائمة الموردين =====\n")
@@ -89,5 +82,14 @@ else:
         print(f"البريد الإلكتروني: {supplier[6]}")
         print(f"ميزة إضافية: {supplier[7]}")
         print("-" * 30)
+
+    # === الجزء الجديد: حفظ البيانات في ملف أكسل تلقائياً ===
+    with open("suppliers_excel.csv", "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.writer(f)
+        # كتابة العناوين الرئيسية للأعمدة
+        writer.writerow(["رقم المورد", "اسم المورد", "اسم المنتج", "السعر", "مدة التوصيل", "التقييم", "البريد الإلكتروني", "ميزة إضافية"])
+        # كتابة البيانات بالكامل
+        writer.writerows(suppliers)
+    print("\n[تم إنشاء ملف الأكسل بنجاح باسم suppliers_excel.csv!]\n")
 
 conn.close()
