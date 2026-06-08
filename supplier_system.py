@@ -1,97 +1,92 @@
 import sqlite3
 import csv
 
-# الاتصال بقاعدة البيانات
+# 1. الاتصال بقاعدة البيانات
 conn = sqlite3.connect("suppliers.db")
 cursor = conn.cursor()
 
-# حذف الجدول القديم لتحديثه بالهيكلة والأعمدة الجديدة بالكامل
+# حذف الجدول القديم لإعادة بنائه بالهيكلية المطلوبة بالضبط
 cursor.execute("DROP TABLE IF EXISTS suppliers")
 
-# إنشاء الجدول الجديد بـ 11 عموداً منفصلاً بالتفصيل مثل الصورة تماماً
+# إنشاء الجدول بالأعمدة الـ 8 الأساسية التي طلبتيها فقط
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS suppliers (
-    supplier_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT NOT NULL,
     supplier_name TEXT NOT NULL,
-    product_category TEXT NOT NULL,
-    delivery_time INTEGER NOT NULL,
     price REAL NOT NULL,
-    city TEXT NOT NULL,
+    delivery_days INTEGER NOT NULL,
     rating REAL,
-    min_order INTEGER,
-    payment_method TEXT,
-    notes TEXT,
     stock_quantity INTEGER,
+    min_order INTEGER,
     email TEXT
 )
 """)
-
 conn.commit()
 
-# البيانات الكاملة (33 مورد) مقسمة ومفصلة في أعمدة مستقلة كما في الصورة
+# 2. البيانات الـ 33 كاملة بنفس أسمائها المخصصة والدقيقة وبدون أي تغيير
 suppliers_data = [
-    ("شركة الاتصالات", "أجهزة إلكترونية", 3, 2500, "الرياض", 4.5, 10, "تحويل بنكي", "يوفر ضمان سنة", 850, "info@generalcomms.com"),
-    ("شركة التقنية للجميع", "أجهزة إلكترونية", 5, 1500, "الدمام", 4.8, 5, "كاش/تحويل", "توفير جميع الأجهزة", 1200, "support@tech4all.com"),
-    ("مؤسسة تقني روعة", "أجهزة إلكترونية", 7, 500, "جدة", 3.5, 2, "كاش", "خدمة عملاء قوية", 340, "contact@taqniroaa.com"),
-    ("شركة كماليات جنان", "أدوات مكتبية", 2, 450, "جدة", 4.2, 20, "كاش/تحويل", "توصيل سريع", 95, "sales@jananluxury.com"),
-    ("مؤسسة تجهيزاتك هنا", "أدوات مكتبية", 5, 400, "الرياض", 4.5, 10, "تحويل", "يوجد الدفع بالأجل", 620, "orders@kathaequip.com"),
-    ("شركة مكتبك الذهبي", "أدوات مكتبية", 3, 300, "الأحساء", 4.9, 5, "كاش", "يوجد خيارات متنوعة", 180, "info@goldenlibrary.com"),
-    ("توردات الخليجية", "مواد غذائية", 5, 1200, "الدمام", 4.7, 50, "تحويل بنكي", "خصومات للكميات", 1450, "sales@gulfsupplies.com"),
-    ("شركة غذاء الجميع", "مواد غذائية", 7, 600, "جدة", 4.3, 30, "كاش", "توصيل مجاني", 780, "contact@foodforall.com"),
-    ("مؤسسة منتجات", "مواد غذائية", 9, 300, "الأحساء", 4.0, 10, "تحويل/كاش", "ضمان", 260, "info@montajat.com"),
-    ("شركة التقنية الحديثة", "إكسسوارات", 4, 3800, "الرياض", 4.8, 5, "تحويل", "دعم فني مجاني", 980, "support@modemtech.com"),
-    ("توريدات الأمل للتقنية", "إكسسوارات", 7, 2000, "جدة", 4.5, 10, "تحويل/كاش", "يوجد دفع بالأجل", 430, "sales@amaltech.com"),
-    ("مؤسسة سعد للأجهزة", "إكسسوارات", 14, 1500, "الأحساء", 4.2, 3, "كاش", "توصيل في أي منطقة", 150, "orders@saaddevices.com"),
-    ("مؤسسة الرؤية", "أثاث مكتبي", 7, 5200, "الدمام", 4.1, 1, "تحويل بنكي", "تركيب مجاني", 710, "info@alruya.com"),
-    ("مؤسسة السلام", "أثاث مكتبي", 5, 7000, "جدة", 4.2, 5, "كاش", "ضمان", 290, "contact@alsalam.com"),
-    ("شركة أقلام", "أثاث مكتبي", 3, 3000, "الرياض", 4.5, 2, "تحويل/كاش", "توصيل سريع", 1750, "sales@aqlam.com"),
-    ("مؤسسة الإبداع", "كاميرات مراقبة", 3, 1800, "جدة", 4.6, 3, "كاش/تحويل", "يشمل التركيب", 520, "info@techcreativity.com"),
-    ("مؤسسة الرقابة", "كاميرات مراقبة", 9, 1000, "الدمام", 4.1, 5, "تحويل", "ضمان ذهبي", 85, "support@raqaba.com"),
-    ("شركة راقب للكاميرات", "كاميرات مراقبة", 7, 750, "الرياض", 4.7, 1, "كاش", "عروض مستمرة", 310, "sales@raqibcams.com"),
-    ("شركة توريدات الهلال", "ملابس وأقمشة", 6, 900, "جدة", 4.0, 30, "تحويل بنكي", "خامات مستوردة", 1340, "orders@hilalsupply.com"),
-    ("مؤسسة خياط السعد", "ملابس وأقمشة", 3, 600, "الأحساء", 4.6, 15, "كاش", "تغليف آمن", 120, "contact@saadtailor.com"),
-    ("شركة حياكة للملابس", "ملابس وأقمشة", 7, 300, "جدة", 4.9, 10, "تحويل/كاش", "عروض موسمية", 680, "sales@hekayaiafashion.com"),
-    ("شركة الإتقان", "أدوات تنظيف", 1, 300, "الدمام", 4.4, 15, "كاش", "توصيل مجاني داخل", 410, "info@aletqan.com"),
-    ("مؤسسة كلين", "أدوات تنظيف", 5, 1500, "الرياض", 4.6, 10, "تحويل", "يوجد تجربة مجانية", 230, "support@cleanco.com"),
-    ("شركة بريق", "أدوات تنظيف", 7, 450, "الأحساء", 4.0, 5, "تحويل/كاش", "يوجد دفع بالأجل", 560, "contact@bareeq.com"),
-    ("مؤسسة الراحة الآمنة", "منتجات زراعية", 3, 1500, "جدة", 4.3, 10, "تحويل بنكي", "منتجات عضوية", 140, "info@safecomfort.com"),
-    ("شركة الطبيعة", "منتجات زراعية", 9, 1000, "الدمام", 4.5, 5, "كاش", "يوجد صناعي", 890, "contact@naturalco.com"),
-    ("توريدات الخضراء", "منتجات زراعية", 5, 750, "الأحساء", 4.8, 15, "تحويل/كاش", "خدمة سريعة", 370, "sales@greensupply.com"),
-    ("شركة التوفير لسيارات", "قطع غيار سيارات", 2, 2200, "الرياض", 4.7, 5, "كاش/تحويل", "توفر شحن لجميع المناطق", 75, "info@savingcars.com"),
-    ("توريدات الأوفر", "قطع غيار سيارات", 5, 1000, "الدمام", 4.2, 10, "كاش", "توصيل سريع", 1120, "orders@alwafeer.com"),
-    ("مؤسسة الحجاز", "قطع غيار سيارات", 9, 1300, "جدة", 4.9, 15, "تحويل", "جميع الأنواع متواجدة", 460, "contact@alhijaz.com"),
-    ("شركة الخشب الأصيل", "أخشاب أثاث", 8, 700, "الأحساء", 4.3, 6, "كاش/تحويل", "الألوان حسب الكمية", 205, "sales@originalwood.com"),
-    ("مؤسسة خشيبك الأتقن", "أخشاب أثاث", 5, 450, "الدمام", 4.8, 3, "تحويل", "توفير كميات كبيرة", 640, "info@khashabak.com"),
-    ("توريدات أخشاب فهد", "أخشاب أثاث", 3, 600, "الرياض", 4.5, 9, "كاش", "ضمان سنتين", 920, "orders@fahdwood.com")
+    ("Laptop HP", "شركة الاتصالات", 2500, 3, 4.5, 850, 10, "info@generalcomms.com"),
+    ("Monitor Samsung", "شركة التقنية للجميع", 1500, 5, 4.8, 1200, 5, "support@tech4all.com"),
+    ("Printer Dell", "مؤسسة تقني روعة", 500, 7, 3.5, 340, 2, "contact@taqniroaa.com"),
+    ("Luxury Desk Organizer", "شركة كماليات جنان", 450, 2, 4.2, 95, 20, "sales@jananluxury.com"),
+    ("Ergonomic Office Chair", "مؤسسة تجهيزاتك هنا", 400, 5, 4.5, 620, 10, "orders@kathaequip.com"),
+    ("Golden Fountain Pen", "شركة مكتبك الذهبي", 300, 3, 4.9, 180, 5, "info@goldenlibrary.com"),
+    ("Premium Olive Oil", "توردات الخليجية", 1200, 5, 4.7, 1450, 50, "sales@gulfsupplies.com"),
+    ("Organic Honey Box", "شركة غذاء الجميع", 600, 7, 4.3, 780, 30, "contact@foodforall.com"),
+    ("Basmati Rice 10kg", "مؤسسة منتجات", 300, 9, 4.0, 260, 10, "info@montajat.com"),
+    ("Mechanical Keyboard", "شركة التقنية الحديثة", 3800, 4, 4.8, 980, 5, "support@modemtech.com"),
+    ("Wireless Gaming Mouse", "توريدات الأمل للتقنية", 2000, 7, 4.5, 430, 10, "sales@amaltech.com"),
+    ("Anker Power Bank", "مؤسسة سعد للأجهزة", 1500, 14, 4.2, 150, 3, "orders@saaddevices.com"),
+    ("Classic Wooden Desk", "مؤسسة الرؤية", 5200, 7, 4.1, 710, 1, "info@alruya.com"),
+    ("Leather Sofa Set", "مؤسسة السلام", 7000, 5, 4.2, 290, 5, "contact@alsalam.com"),
+    ("Meeting Room Table", "شركة أقلام", 3000, 3, 4.5, 1750, 2, "sales@aqlam.com"),
+    ("4K IP Camera Hikvision", "مؤسسة الإبداع", 1800, 3, 4.6, 520, 3, "info@techcreativity.com"),
+    ("Smart Door Lock", "مؤسسة الرقابة", 1000, 9, 4.1, 85, 5, "support@raqaba.com"),
+    ("8CH NVR Recorder", "شركة راقب للكاميرات", 750, 7, 4.7, 310, 1, "sales@raqibcams.com"),
+    ("Silk Fabric Roll", "شركة توريدات الهلال", 900, 6, 4.0, 1340, 30, "orders@hilalsupply.com"),
+    ("Custom Men Thobe", "مؤسسة خياط السعد", 600, 3, 4.6, 120, 15, "contact@saadtailor.com"),
+    ("Winter Wool Jacket", "شركة حياكة للملابس", 300, 7, 4.9, 680, 10, "sales@hekayaiafashion.com"),
+    ("Industrial Detergent", "شركة الإتقان", 300, 1, 4.4, 410, 15, "info@aletqan.com"),
+    ("Vacuum Cleaner Pro", "مؤسسة كلين", 1500, 5, 4.6, 230, 10, "support@cleanco.com"),
+    ("Microfiber Towels Pack", "شركة بريق", 450, 7, 4.0, 560, 5, "contact@bareeq.com"),
+    ("Organic Fertilizer Bag", "مؤسسة الراحة الآمنة", 1500, 3, 4.3, 140, 10, "info@safecomfort.com"),
+    ("Automatic Water Pump", "شركة الطبيعة", 1000, 9, 4.5, 890, 5, "contact@naturalco.com"),
+    ("Greenhouse Seeds Kit", "توريدات الخضراء", 750, 5, 4.8, 370, 15, "sales@greensupply.com"),
+    ("Brembo Brake Pads", "شركة التوفير لسيارات", 2200, 2, 4.7, 75, 5, "info@savingcars.com"),
+    ("Mobil Engine Oil 1L", "توريدات الأوفر", 1000, 5, 4.2, 1120, 10, "orders@alwafeer.com"),
+    ("LED Headlight Bulb", "مؤسسة الحجاز", 1300, 9, 4.9, 460, 15, "contact@alhijaz.com"),
+    ("Oak Wood Planks", "شركة الخشب الأصيل", 700, 8, 4.3, 205, 6, "sales@originalwood.com"),
+    ("MDF Fiberboard Sheet", "مؤسسة خشيبك الأتقن", 450, 5, 4.8, 640, 3, "info@khashabak.com"),
+    ("Plywood Waterproof", "توريدات أخشاب فهد", 600, 3, 4.5, 920, 9, "orders@fahdwood.com")
 ]
 
-# إدخال البيانات المنفصلة في الجدول الجديد
+# إدخال البيانات في قاعدة البيانات
 cursor.executemany("""
-INSERT INTO suppliers (supplier_name, product_category, delivery_time, price, city, rating, min_order, payment_method, notes, stock_quantity, email)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO suppliers (product_name, supplier_name, price, delivery_days, rating, stock_quantity, min_order, email)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 """, suppliers_data)
 conn.commit()
 
-# استعلام لقراءة البيانات المحدثة
+# 3. جلب البيانات للتأكد وعرضها في الترمينال بالترتيب المطلوب
 cursor.execute("SELECT * FROM suppliers")
 suppliers = cursor.fetchall()
 
-print("\n===== قائمة الموردين المحدثة بالتفصيل =====\n")
+print("\n===== استعراض البيانات المنسقة بالترتيب المطلوب بالضبط =====\n")
 for s in suppliers:
-    print(f"رقم المورد: {s[0]} | الاسم: {s[1]} | التخصص: {s[2]} | التوصيل: {s[3]} أيام | السعر: {s[4]} ريال | المدينة: {s[5]} | التقييم: {s[6]}")
-    print("-" * 60)
+    print(f"Product: {s[0]:<23} | Supplier: {s[1]:<15} | Price: {s[2]:<6} | Days: {s[3]:<3} | Rating: {s[4]:<4} | Stock: {s[5]:<5} | Min: {s[6]:<3} | Email: {s[7]}")
+    print("-" * 120)
 
-# إنشاء ملف الأكسل (CSV) المحدث بـ 11 عموداً منفصلاً يطابق الصورة بالملي
+# 4. تصدير البيانات إلى ملف الأكسل (CSV) بالأعمدة الـ 8 المحددة فقط وبترتيبكِ الخاص
 with open("suppliers_excel.csv", "w", newline="", encoding="utf-8-sig") as f:
     writer = csv.writer(f)
-    # كتابة أسماء الأعمدة منفصلة مثل الصورة تماماً
+    
+    # أسماء الأعمدة الـ 8 المطلوبة بالضبط بالإنجليزية
     writer.writerow([
-        "رقم المورد", "اسم المورد", "ايش يبيع", "زمن", "السعر", 
-        "المدينة", "التقييم", "الحد الأدنى", "طريقة", "ملاحظات", 
-        "الكمية المتواجدة في المخزون", "سادات التواصل مع الجهة"
+        "Product Name", "Supplier Name", "Price", "Delivery Days", 
+        "Rating", "Stock Quantity", "Min Order", "Email"
     ])
-    # كتابة البيانات بالكامل
+    
     writer.writerows(suppliers)
 
-print("\n[تم تحديث ملف الأكسل بنجاح وتفصيل كل عمود على حدة مثل الصورة!]\n")
+print("\n[تم تحديث ملف الأكسل وقاعدة البيانات بالترتيب المعتمد والأسماء الـ 8 المطلوبة فقط!]\n")
 conn.close()

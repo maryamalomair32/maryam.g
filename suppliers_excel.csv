@@ -1,34 +1,34 @@
-﻿رقم المورد,اسم المورد,ايش يبيع,زمن,السعر,المدينة,التقييم,الحد الأدنى,طريقة,ملاحظات,الكمية المتواجدة في المخزون,سادات التواصل مع الجهة
-1,شركة الاتصالات,أجهزة إلكترونية,3,2500.0,الرياض,4.5,10,تحويل بنكي,يوفر ضمان سنة,850,info@generalcomms.com
-2,شركة التقنية للجميع,أجهزة إلكترونية,5,1500.0,الدمام,4.8,5,كاش/تحويل,توفير جميع الأجهزة,1200,support@tech4all.com
-3,مؤسسة تقني روعة,أجهزة إلكترونية,7,500.0,جدة,3.5,2,كاش,خدمة عملاء قوية,340,contact@taqniroaa.com
-4,شركة كماليات جنان,أدوات مكتبية,2,450.0,جدة,4.2,20,كاش/تحويل,توصيل سريع,95,sales@jananluxury.com
-5,مؤسسة تجهيزاتك هنا,أدوات مكتبية,5,400.0,الرياض,4.5,10,تحويل,يوجد الدفع بالأجل,620,orders@kathaequip.com
-6,شركة مكتبك الذهبي,أدوات مكتبية,3,300.0,الأحساء,4.9,5,كاش,يوجد خيارات متنوعة,180,info@goldenlibrary.com
-7,توردات الخليجية,مواد غذائية,5,1200.0,الدمام,4.7,50,تحويل بنكي,خصومات للكميات,1450,sales@gulfsupplies.com
-8,شركة غذاء الجميع,مواد غذائية,7,600.0,جدة,4.3,30,كاش,توصيل مجاني,780,contact@foodforall.com
-9,مؤسسة منتجات,مواد غذائية,9,300.0,الأحساء,4.0,10,تحويل/كاش,ضمان,260,info@montajat.com
-10,شركة التقنية الحديثة,إكسسوارات,4,3800.0,الرياض,4.8,5,تحويل,دعم فني مجاني,980,support@modemtech.com
-11,توريدات الأمل للتقنية,إكسسوارات,7,2000.0,جدة,4.5,10,تحويل/كاش,يوجد دفع بالأجل,430,sales@amaltech.com
-12,مؤسسة سعد للأجهزة,إكسسوارات,14,1500.0,الأحساء,4.2,3,كاش,توصيل في أي منطقة,150,orders@saaddevices.com
-13,مؤسسة الرؤية,أثاث مكتبي,7,5200.0,الدمام,4.1,1,تحويل بنكي,تركيب مجاني,710,info@alruya.com
-14,مؤسسة السلام,أثاث مكتبي,5,7000.0,جدة,4.2,5,كاش,ضمان,290,contact@alsalam.com
-15,شركة أقلام,أثاث مكتبي,3,3000.0,الرياض,4.5,2,تحويل/كاش,توصيل سريع,1750,sales@aqlam.com
-16,مؤسسة الإبداع,كاميرات مراقبة,3,1800.0,جدة,4.6,3,كاش/تحويل,يشمل التركيب,520,info@techcreativity.com
-17,مؤسسة الرقابة,كاميرات مراقبة,9,1000.0,الدمام,4.1,5,تحويل,ضمان ذهبي,85,support@raqaba.com
-18,شركة راقب للكاميرات,كاميرات مراقبة,7,750.0,الرياض,4.7,1,كاش,عروض مستمرة,310,sales@raqibcams.com
-19,شركة توريدات الهلال,ملابس وأقمشة,6,900.0,جدة,4.0,30,تحويل بنكي,خامات مستوردة,1340,orders@hilalsupply.com
-20,مؤسسة خياط السعد,ملابس وأقمشة,3,600.0,الأحساء,4.6,15,كاش,تغليف آمن,120,contact@saadtailor.com
-21,شركة حياكة للملابس,ملابس وأقمشة,7,300.0,جدة,4.9,10,تحويل/كاش,عروض موسمية,680,sales@hekayaiafashion.com
-22,شركة الإتقان,أدوات تنظيف,1,300.0,الدمام,4.4,15,كاش,توصيل مجاني داخل,410,info@aletqan.com
-23,مؤسسة كلين,أدوات تنظيف,5,1500.0,الرياض,4.6,10,تحويل,يوجد تجربة مجانية,230,support@cleanco.com
-24,شركة بريق,أدوات تنظيف,7,450.0,الأحساء,4.0,5,تحويل/كاش,يوجد دفع بالأجل,560,contact@bareeq.com
-25,مؤسسة الراحة الآمنة,منتجات زراعية,3,1500.0,جدة,4.3,10,تحويل بنكي,منتجات عضوية,140,info@safecomfort.com
-26,شركة الطبيعة,منتجات زراعية,9,1000.0,الدمام,4.5,5,كاش,يوجد صناعي,890,contact@naturalco.com
-27,توريدات الخضراء,منتجات زراعية,5,750.0,الأحساء,4.8,15,تحويل/كاش,خدمة سريعة,370,sales@greensupply.com
-28,شركة التوفير لسيارات,قطع غيار سيارات,2,2200.0,الرياض,4.7,5,كاش/تحويل,توفر شحن لجميع المناطق,75,info@savingcars.com
-29,توريدات الأوفر,قطع غيار سيارات,5,1000.0,الدمام,4.2,10,كاش,توصيل سريع,1120,orders@alwafeer.com
-30,مؤسسة الحجاز,قطع غيار سيارات,9,1300.0,جدة,4.9,15,تحويل,جميع الأنواع متواجدة,460,contact@alhijaz.com
-31,شركة الخشب الأصيل,أخشاب أثاث,8,700.0,الأحساء,4.3,6,كاش/تحويل,الألوان حسب الكمية,205,sales@originalwood.com
-32,مؤسسة خشيبك الأتقن,أخشاب أثاث,5,450.0,الدمام,4.8,3,تحويل,توفير كميات كبيرة,640,info@khashabak.com
-33,توريدات أخشاب فهد,أخشاب أثاث,3,600.0,الرياض,4.5,9,كاش,ضمان سنتين,920,orders@fahdwood.com
+﻿Product Name,Supplier Name,Price,Delivery Days,Rating,Stock Quantity,Min Order,Email
+Laptop HP,شركة الاتصالات,2500.0,3,4.5,850,10,info@generalcomms.com
+Monitor Samsung,شركة التقنية للجميع,1500.0,5,4.8,1200,5,support@tech4all.com
+Printer Dell,مؤسسة تقني روعة,500.0,7,3.5,340,2,contact@taqniroaa.com
+Luxury Desk Organizer,شركة كماليات جنان,450.0,2,4.2,95,20,sales@jananluxury.com
+Ergonomic Office Chair,مؤسسة تجهيزاتك هنا,400.0,5,4.5,620,10,orders@kathaequip.com
+Golden Fountain Pen,شركة مكتبك الذهبي,300.0,3,4.9,180,5,info@goldenlibrary.com
+Premium Olive Oil,توردات الخليجية,1200.0,5,4.7,1450,50,sales@gulfsupplies.com
+Organic Honey Box,شركة غذاء الجميع,600.0,7,4.3,780,30,contact@foodforall.com
+Basmati Rice 10kg,مؤسسة منتجات,300.0,9,4.0,260,10,info@montajat.com
+Mechanical Keyboard,شركة التقنية الحديثة,3800.0,4,4.8,980,5,support@modemtech.com
+Wireless Gaming Mouse,توريدات الأمل للتقنية,2000.0,7,4.5,430,10,sales@amaltech.com
+Anker Power Bank,مؤسسة سعد للأجهزة,1500.0,14,4.2,150,3,orders@saaddevices.com
+Classic Wooden Desk,مؤسسة الرؤية,5200.0,7,4.1,710,1,info@alruya.com
+Leather Sofa Set,مؤسسة السلام,7000.0,5,4.2,290,5,contact@alsalam.com
+Meeting Room Table,شركة أقلام,3000.0,3,4.5,1750,2,sales@aqlam.com
+4K IP Camera Hikvision,مؤسسة الإبداع,1800.0,3,4.6,520,3,info@techcreativity.com
+Smart Door Lock,مؤسسة الرقابة,1000.0,9,4.1,85,5,support@raqaba.com
+8CH NVR Recorder,شركة راقب للكاميرات,750.0,7,4.7,310,1,sales@raqibcams.com
+Silk Fabric Roll,شركة توريدات الهلال,900.0,6,4.0,1340,30,orders@hilalsupply.com
+Custom Men Thobe,مؤسسة خياط السعد,600.0,3,4.6,120,15,contact@saadtailor.com
+Winter Wool Jacket,شركة حياكة للملابس,300.0,7,4.9,680,10,sales@hekayaiafashion.com
+Industrial Detergent,شركة الإتقان,300.0,1,4.4,410,15,info@aletqan.com
+Vacuum Cleaner Pro,مؤسسة كلين,1500.0,5,4.6,230,10,support@cleanco.com
+Microfiber Towels Pack,شركة بريق,450.0,7,4.0,560,5,contact@bareeq.com
+Organic Fertilizer Bag,مؤسسة الراحة الآمنة,1500.0,3,4.3,140,10,info@safecomfort.com
+Automatic Water Pump,شركة الطبيعة,1000.0,9,4.5,890,5,contact@naturalco.com
+Greenhouse Seeds Kit,توريدات الخضراء,750.0,5,4.8,370,15,sales@greensupply.com
+Brembo Brake Pads,شركة التوفير لسيارات,2200.0,2,4.7,75,5,info@savingcars.com
+Mobil Engine Oil 1L,توريدات الأوفر,1000.0,5,4.2,1120,10,orders@alwafeer.com
+LED Headlight Bulb,مؤسسة الحجاز,1300.0,9,4.9,460,15,contact@alhijaz.com
+Oak Wood Planks,شركة الخشب الأصيل,700.0,8,4.3,205,6,sales@originalwood.com
+MDF Fiberboard Sheet,مؤسسة خشيبك الأتقن,450.0,5,4.8,640,3,info@khashabak.com
+Plywood Waterproof,توريدات أخشاب فهد,600.0,3,4.5,920,9,orders@fahdwood.com
